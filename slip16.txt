@@ -1,0 +1,19 @@
+Q1) Write a program to find the Square of given number using function interface.
+SOLUTION:
+import java.util.Scanner;
+@FunctionalInterface
+interface Square {
+double getSquare(double num);
+}
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read in a number from the user
+System.out.print("Enter a number: ");
+double num = scanner.nextDouble();
+// Create a lambda expression to calculate the square of the number
+Square square = (double x) -> x * x;
+// Call the getSquare() method on the lambda expression and print the result
+System.out.println("The square of " + num + " is " + square.getSquare(num));
+}
+}

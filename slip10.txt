@@ -1,0 +1,71 @@
+SLIP 10
+Q1) Write a program to find the cube of given number using functional interface.
+SOLUTION:
+import java.util.Scanner;
+@FunctionalInterface
+interface Cube {
+int cube(int x);
+}
+public class Main {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter a number: ");
+int num = sc.nextInt();
+// Copy code
+Cube cube = x -> x * x * x;
+System.out.println("The cube of " + num + " is " + cube.cube(num));
+sc.close();
+}
+}
+Q2) Write a program to create a package name student. Define class StudentInfo with method to display information about student such as rollno, class, and percentage. Create another class StudentPer with method to find percentage of the student. Accept student details like
+rollno, name, class and marks of 6 subject from user.
+SOLUTION:
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+class StudentInfo {
+int rollno;
+String name;
+String className;
+float percentage;
+StudentInfo(int rollno, String name, String className, float percentage) {
+this.rollno = rollno;
+this.name = name;
+this.className = className;
+this.percentage = percentage;
+}
+void display() {
+System.out.println("ROLL NO.: " + rollno);
+System.out.println("NAME: " + name);
+System.out.println("CLASS: " + className);
+System.out.println("PERCENTAGE: " + percentage);
+}
+}
+class StudentPer {
+static float findPercentage(int[] marks) {
+float total = 0;
+for (int mark : marks) {
+total += mark;
+}
+return total / marks.length;
+}
+}
+public class Main {
+public static void main(String[] args) throws IOException {
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.print("Enter roll number: ");
+int rollno = Integer.parseInt(br.readLine());
+System.out.print("Enter name: ");
+String name = br.readLine();
+System.out.print("Enter class: ");
+String className = br.readLine();
+int[] marks = new int[6];
+for (int i = 0; i < 6; i++) {
+System.out.print("Enter marks for subject " + (i+1) + ": ");
+marks[i] = Integer.parseInt(br.readLine());
+}
+float percentage = StudentPer.findPercentage(marks);
+StudentInfo student = new StudentInfo(rollno, name, className, percentage);
+student.display();
+}
+}

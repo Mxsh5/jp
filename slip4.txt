@@ -1,0 +1,48 @@
+SLIP 4
+Q1)Write a program to print an array after changing the rows and columns of a given two-dimensional array.
+SOLUTION:
+import java.io.*;
+public class Main {
+static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+static int a[][] = new int[5][5];
+public static void main(String[] args) throws NumberFormatException, IOException {
+int m = 0, n = 0;
+System.out.print("Enter number of rows ");
+m = Integer.parseInt(sc.readLine());
+System.out.print("Enter number of columns ");
+n = Integer.parseInt(sc.readLine());
+if (m == n)
+{
+int i, j;
+System.out.println("Enter values for matrix: ");
+for (i = 0; i < m; i++) {
+for (j = 0; j < n; j++) {
+a[i][j] = Integer.parseInt(sc.readLine());
+}
+}
+System.out.println("Orignal Matrix :");
+for (i = 0; i < m; i++) {
+for (j = 0; j < n; j++) {
+System.out.print("[" + a[i][j] + "]");
+}
+System.out.println("");
+}
+int transpose[][] = new int[m][n];
+System.out.println("Transpose of Matrix = ");
+int i3, j3;
+for (i3 = 0; i3 < m; i3++)
+{
+for (j3 = 0; j3 < n; j3++)
+{
+transpose[i3][j3] = a[j3][i3];
+System.out.print("[" + transpose[i3][j3] + "]");
+}
+System.out.println("");
+}
+}
+else
+{
+System.out.println("Rows not equal to columns");
+}
+}
+}

@@ -1,0 +1,114 @@
+SLIP 1
+Q1) Write a Program to print all Prime numbers in an array of ‘n’ elements. (use command line arguments)
+SOLUTION:
+class Main {
+public static int isPrime(int x)
+{
+int i;
+for (i = 2; i < x / 2 + 1; i++) {
+if (x % i == 0) {
+return 0;
+}
+}
+return 1;
+}
+public static void findPrimes(int n)
+{
+int i;
+for (i = 2; i <= n; i++) {
+if (isPrime(i) == 1)
+System.out.print(i + ", ");
+}
+System.out.println();
+}
+public static void main(String[] args)
+{
+if (args.length > 0) {
+int n = Integer.parseInt(args[0]);
+findPrimes(n);
+}
+else
+System.out.println("No command line " + "arguments found.");
+}
+}
+Q2) Define an abstract class Staff with protected members id and name. Define a parameterized constructor. Define one subclass OfficeStaff with member department. Create n objects of OfficeStaff and display all details.
+SOLUTION:
+import java.io.IOException;
+import java.io.*;
+abstract class Staff{
+String name;
+int id;
+}
+class FullTimeStaff extends Staff{
+String department;
+double salary;
+public void accept() throws IOException{
+System.out.println("Enter the name, ID, department and salary: ");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+name=br.readLine();
+id=Integer.parseInt(br.readLine());
+department=br.readLine();
+salary=Double.parseDouble(br.readLine());
+}
+public void display(){
+System.out.println("Name: "+name);
+System.out.println("ID: "+id);
+System.out.println("Department: "+department);
+System.out.println("Salary: "+salary);
+System.out.println("----------------------");
+}
+}
+class PartTimeStaff extends Staff{
+int hours, rate;
+public void accept() throws IOException{
+System.out.println("Enter the name, ID , No of working hours and rate per hour: ");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+name=br.readLine();
+id=Integer.parseInt(br.readLine());
+hours=Integer.parseInt(br.readLine());
+rate=Integer.parseInt(br.readLine());
+}
+public void display(){
+System.out.println("Name: "+name);
+System.out.println("ID: "+id);
+System.out.println("No of Working Hours: "+hours);
+System.out.println("Rate per hour: "+rate);
+System.out.println("----------------------");
+}
+}
+public class Main {
+public static void main(String [] args) throws IOException{
+int i;
+System.out.println("Select Any One: ");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+System.out.println("1.Full Time Staff");
+System.out.println("2.Part Time Satff");
+int ch=Integer.parseInt(br.readLine());
+switch(ch){
+case 1:
+System.out.println("Enter the number of Full Time Staff: ");
+int n=Integer.parseInt(br.readLine());
+FullTimeStaff [] l=new FullTimeStaff[n];
+for(i=0;i<n;i++){
+l[i]=new FullTimeStaff();
+l[i].accept();
+}
+for(i=0;i<n;i++){
+l[i].display();
+}
+break;
+case 2:
+System.out.println("Enter the number of Part Time Staff: ");
+int m=Integer.parseInt(br.readLine());
+PartTimeStaff [] h=new PartTimeStaff[m];
+for(i=0;i<m;i++){
+h[i]=new PartTimeStaff();
+h[i].accept();
+}
+for(i=0;i<m;i++){
+h[i].display();
+}
+break;
+}
+}
+}

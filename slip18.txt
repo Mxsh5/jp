@@ -1,0 +1,101 @@
+SLIP 18
+Q1) Write a program to implement Border Layout Manager.
+SOLUTION:
+import java.awt.*;
+import javax.swing.*;
+public class Border
+{
+JFrame f;
+Border()
+{
+f = new JFrame();
+// creating buttons
+JButton b1 = new JButton("NORTH");; // the button will be labeled as NORTH
+JButton b2 = new JButton("SOUTH");; // the button will be labeled as SOUTH
+JButton b3 = new JButton("EAST");; // the button will be labeled as EAST
+JButton b4 = new JButton("WEST");; // the button will be labeled as WEST
+JButton b5 = new JButton("CENTER");; // the button will be labeled as
+CENTER
+f.add(b1, BorderLayout.NORTH); // b1 will be placed in the North Direction
+f.add(b2, BorderLayout.SOUTH); // b2 will be placed in the South Direction
+f.add(b3, BorderLayout.EAST); // b2 will be placed in the East Direction
+f.add(b4, BorderLayout.WEST); // b2 will be placed in the West Direction
+f.add(b5, BorderLayout.CENTER); // b2 will be placed in the Center
+f.setSize(300, 300);
+f.setVisible(true);
+}
+public static void main(String[] args) {
+new Border();
+}
+}
+Q2) Define a class CricketPlayer (name,no_of_innings,no_of_times_notout, totatruns, bat_avg).
+Create an array of n player objects. Calculate the batting average for each player using static method avg(). Define a static sort method which sorts the array on the basis of average.
+Display the player details in sorted order.
+SOLUTION:
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+class CricketPlayer {
+String name;
+int no_of_innings;
+int no_of_times_not_out;
+int totlaruns;
+float bat_avg;
+static int count;
+CricketPlayer() {
+}
+CricketPlayer(String name, int no_of_innings, int no_of_times_not_out, int totlaruns , float bat_avg) {
+count++;
+this.name=name;
+this.no_of_innings=no_of_innings;
+this.no_of_times_not_out=no_of_times_not_out;
+this.totlaruns=totlaruns;
+this.bat_avg=bat_avg;
+}
+void display() {
+System.out.println("NAME: "+name+" INNINGS: "+no_of_innings+" NOT OUT: "+no_of_times_not_out+" TOTAL RUNS: "+totlaruns+" BATTING AVERAGE: "+bat_avg);
+}
+float getBatAvg() {
+return bat_avg;
+}
+void counter() {
+System.out.println(count + " object is created");
+}
+public static void sortStudent(CricketPlayer s[], int n) {
+for (int i = n - 1; i >= 0; i--) {
+for (int j = 0; j < i; j++) {
+if (s[j].getBatAvg() > s[j + 1].getBatAvg()) {
+CricketPlayer t = s[j];
+s[j] = s[j + 1];
+s[j + 1] = t;
+}
+}
+}
+System.out.println("-----List of Player sorted as per Batting Average-----");
+for (int i = 0; i < n; i++)
+s[i].display();
+}
+}
+public class ass2_SetB_q2 {
+public static void main(String args[]) throws IOException {
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Enter no. of Player:");
+int n = Integer.parseInt(br.readLine());
+CricketPlayer p[] = new CricketPlayer[n];
+for (int i = 0; i < n; i++) {
+System.out.print("Enter Name:");
+String name = br.readLine();
+System.out.print("Enter Innings:");
+int no_of_innings = Integer.parseInt(br.readLine());
+System.out.println("Enter number of times not out");
+int no_of_times_not_out = Integer.parseInt(br.readLine());
+System.out.println("Enter total runs");
+int totlaruns = Integer.parseInt(br.readLine());
+System.out.println("Enter Batting Average");
+float bat_avg = Float.parseFloat(br.readLine());
+p[i] = new CricketPlayer(name,no_of_innings,no_of_times_not_out,totlaruns,bat_avg);
+p[i].counter();
+}
+CricketPlayer.sortStudent(p, CricketPlayer.count);
+}
+}
